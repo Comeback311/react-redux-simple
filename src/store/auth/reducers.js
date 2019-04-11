@@ -3,7 +3,6 @@ import { AUTH_SET_LOGIN, AUTH_SET_PASSWORD, LOGIN_USER, LOGOUT_USER, SHOW_ERROR_
 const defaultState = {
     login: '',
     password: '',
-    uid: '',
     errorText: ''
 };
 
@@ -19,27 +18,30 @@ export const authReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 password: action.payload
-            }
+            };
 
         case LOGIN_USER:
+            delete state.password;
+            delete state.errorText;
+
             return {
                 ...state,
                 uid: action.payload.uid,
-                login: action.payload.login,
-                errorText: ''
-            }
+                login: action.payload.login
+            };
 
         case LOGOUT_USER:
+            delete state.uid;
+
             return {
-                ...state,
-                uid: ''
-            }
+                ...state
+            };
 
         case SHOW_ERROR_TEXT: {
             return {
                 ...state,
                 errorText: action.payload
-            }
+            };
         }
 
         default:

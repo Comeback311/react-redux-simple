@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Header } from '../../components';
-import tools from '../../tools/index'
+import { Header, Footer } from '../../components';
 
 import './index.scss'
 
@@ -13,8 +12,6 @@ export default class HomeContainer extends React.Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.onLoginChange = this.onLoginChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
-
-        this.onclick = this.onclick.bind(this);
     }
 
     onSubmit(e) {
@@ -53,32 +50,6 @@ export default class HomeContainer extends React.Component {
         this.props.setPassword(e.target.value);
     }
 
-    componentDidMount() {
-        const uid = tools.getCookie('uid');
-        const login = tools.getCookie('login');
-
-        if (uid && login) {
-            this.props.loginUser({ uid, login });
-        }
-    }
-
-    onEmailChange(e) {
-        this.props.setEmailText(e.target.value);
-    }
-
-    onclick() {
-        fetch('/users', {
-            method: 'POST',
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({name: this.props.email})
-        })
-            .then(r => r.json())
-            .then(data => console.log(data))
-    }
-
     renderAuth() {
         return (
             <div className='auth'>
@@ -99,9 +70,7 @@ export default class HomeContainer extends React.Component {
                 <div className='page'>
                     <Link to='/users'>Все пользователи</Link>
                 </div>
-                <div className='footer'>
-                    <div className='footer__copy'>Avdeev Denis &copy;</div>
-                </div>
+                <Footer />
             </div>
         )
     }
