@@ -1,7 +1,40 @@
-body {
-    margin: 0;
+@import '../../styles/variables.scss';
 
-    background: url('./images/bg.png');
+$footer-padding: 10px;
+
+.footer {
+    height: $footer-height;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    &__copy {
+        margin-right: 10px;
+        font-size: 13px;
+        
+        color: cornflowerblue;
+        opacity: .3;
+    }
+}
+
+.page {
+    height: calc(100vh - #{$header-height + $footer-height + $footer-padding * 2});
+
+    padding: $footer-padding;
+}
+
+a {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &,
+    &:visited {
+        color: blue;
+    }
 }
 
 .auth {

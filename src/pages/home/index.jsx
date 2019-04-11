@@ -1,25 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setLogin, setPassword, loginUser, showErrorText } from '../../store/auth/actions';
+import { loginUser, setLogin, setPassword, showErrorText } from '../../store/auth/actions';
 
-import Auth from './auth'
+import HomeContainer from './HomeContainer';
 
-class AuthContainer extends React.Component {
-	render() {
-		return (
-			<Auth 
+class Home extends React.Component {
+    render() {
+        return (
+            <HomeContainer
+                uid={this.props.uid}
                 login={this.props.login}
                 password={this.props.password}
-                uid={this.props.uid}
                 errorText={this.props.errorText}
+
                 setPassword={this.props.setPassword}
                 setLogin={this.props.setLogin}
-                loginUser={this.props.loginUser}
                 showErrorText={this.props.showErrorText}
+                loginUser={this.props.loginUser}
             />
 		);
-	}
+    }
 };
 
 const mapStateToProps = state => {
@@ -30,7 +31,6 @@ const mapStateToProps = state => {
         errorText: state.auth.errorText
     };
 }
-
 const mapDispatchToProps = {
     setLogin,
     setPassword,
@@ -38,4 +38,4 @@ const mapDispatchToProps = {
     showErrorText
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

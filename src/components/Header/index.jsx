@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 
 import { logoutUser } from '../../store/auth/actions';
 
-import Header from './home'
+import HeaderContainer from './HeaderContainer'
 
-class HomeContainer extends React.Component {
+class Header extends React.Component {
 	render() {
 		return (
-			<Header 
+			<HeaderContainer 
                 logoutUser={this.props.logoutUser}
                 uid={this.props.uid}
                 login={this.props.login}
@@ -28,4 +28,4 @@ const mapDispatchToProps = {
     logoutUser
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

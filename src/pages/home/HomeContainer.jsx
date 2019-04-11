@@ -1,17 +1,20 @@
 import React from 'react';
-import Home from '../../components/Home/container';
+import { Link } from 'react-router-dom';
 
+import { Header } from '../../components';
 import tools from '../../tools/index'
 
 import './index.scss'
 
-export default class Auth extends React.Component {
+export default class HomeContainer extends React.Component {
     constructor(props) {
         super(props);
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onLoginChange = this.onLoginChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
+
+        this.onclick = this.onclick.bind(this);
     }
 
     onSubmit(e) {
@@ -59,6 +62,23 @@ export default class Auth extends React.Component {
         }
     }
 
+    onEmailChange(e) {
+        this.props.setEmailText(e.target.value);
+    }
+
+    onclick() {
+        fetch('/users', {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name: this.props.email})
+        })
+            .then(r => r.json())
+            .then(data => console.log(data))
+    }
+
     renderAuth() {
         return (
             <div className='auth'>
@@ -74,59 +94,21 @@ export default class Auth extends React.Component {
 
     renderHome() {
         return (
-            <Home />
+            <div className='home'>
+                <Header />
+                <div className='page'>
+                    <Link to='/users'>Все пользователи</Link>
+                </div>
+                <div className='footer'>
+                    <div className='footer__copy'>Avdeev Denis &copy;</div>
+                </div>
+            </div>
         )
     }
 
     render() {
         return (
-            // tools.getCookie('uid') ? this.renderHome() : this.renderAuth()
             this.props.uid ? this.renderHome() : this.renderAuth()
 		);
     }
 };
-
-
-// import React from 'react';
-
-// export default class Auth extends React.Component {
-//     constructor(props) {
-//         super(props);
-
-//         this.onEmailChange = this.onEmailChange.bind(this);
-//         this.onPasswordChange = this.onPasswordChange.bind(this);
-//         this.onclick = this.onclick.bind(this);
-//     }
-
-//     onEmailChange(e) {
-//         this.props.setEmailText(e.target.value);
-//     }
-
-//     onPasswordChange(e) {
-//         this.props.setPasswordText(e.target.value);
-//     }
-
-//     onclick() {
-//         fetch('/users', {
-//             method: 'POST',
-//             headers: {
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({name: this.props.email})
-//         })
-//             .then(r => r.json())
-//             .then(data => console.log(data))
-//     }
-
-//     render() {
-//         return (
-//             <div className='auth'>
-//                 <p>Auth</p>
-//                 <input type='text' placeholder='login' value={this.props.email} onChange={this.onEmailChange}/>
-//                 <input type='password' placeholder='password' value={this.props.password} onChange={this.onPasswordChange}/>
-//                 <button onClick={this.onclick}>Click</button>
-//             </div>
-//         )
-//     }
-// }
