@@ -1,0 +1,40 @@
+.footer {
+    height: 40px;
+    // background: lighten($color: lightblue, $amount: 10);
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    &__copy {
+        margin-right: 10px;
+        font-size: 13px;
+        
+        color: cornflowerblue;
+        opacity: .3;
+    }
+}
+
+.page {
+    //                footer / header / padding
+    height: calc(100vh - 40px - 60px - 20px);
+
+    padding: 10px;
+}
+
+body {
+    font-family: 'Comfortaa', cursive;
+}
+
+a {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &,
+    &:visited {
+        color: blue;
+    }
+}
