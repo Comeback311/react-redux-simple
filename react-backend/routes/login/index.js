@@ -1,21 +1,7 @@
 import { responseSuccess, responseError } from '../../tools';
+import db from '../../tools/mongo';
 
 const crypto = require('crypto');
-
-const MongoClient = require('mongodb').MongoClient;
-const mongoClient = new MongoClient('mongodb://localhost:27017/', { useNewUrlParser: true });
-
-let collection;
-
-mongoClient.connect((err, client) => {
-    if (err) return console.log(err);
-
-    collection = client.db('react-vk').collection('users');
-
-    console.log('mongo connected');
-
-    // registerUser({ login: 'robot', password: '123', id: 2 });
-});
 
 export default function loginRouter(req, res, next) {
     const { login, password } = req.body;
@@ -25,6 +11,8 @@ export default function loginRouter(req, res, next) {
             errorText: 'Не заполнено поле логин или пароль.'
         });
     }
+
+    const collection = db.collection('users');
 
     collection.findOne({ login }, (error, result) => {
         if (error || !result) {
