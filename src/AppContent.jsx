@@ -12,14 +12,36 @@ import './styles/reset.scss';
 import './styles/global.scss';
 
 class AppContent extends React.Component {
-    componentDidMount() {
-        const uid = tools.getCookie('uid');
+	constructor(props) {
+		super(props);
+
+		this.tryToLogin();
+	}
+
+	tryToLogin() {
+		const uid = tools.getCookie('uid');
         const login = tools.getCookie('login');
 
         if (uid && login) {
-            this.props.loginUser({ uid, login });
-        }
-    }
+			this.props.loginUser({ uid, login });
+
+			this.updateOnlineStatus();
+		}
+	}
+	
+	updateOnlineStatus() {
+		setInterval(function() {
+			fetch('/api/online')
+				.then(r => r.json())
+				.then(data => this.onFetchResponse.call(this, data))
+		}.bind(this), 10000);
+	}
+
+	onFetchResponse(data) {
+		if (data.error) {
+			console.error(data.errorText);
+		}
+	}
 
 	render() {
 		return (
