@@ -18,14 +18,18 @@ class AppContent extends React.Component {
 		this.tryToLogin();
 	}
 
+	componentDidUpdate() {
+		if (this.props.uid) {
+			this.updateOnlineStatus();
+		}
+	}
+
 	tryToLogin() {
 		const uid = getCookie('uid');
 		const login = getCookie('login');
 
 		if (uid && login) {
 			this.props.loginUser({ uid, login });
-
-			this.updateOnlineStatus();
 		}
 	}
 
