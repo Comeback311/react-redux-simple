@@ -3,10 +3,14 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const { mongoConnect } = require('./tools');
 
 const apiRouter = require('./routes/api');
 
 const app = express();
+
+// connect to mongodb once
+mongoConnect(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

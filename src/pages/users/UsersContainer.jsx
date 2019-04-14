@@ -24,7 +24,7 @@ export default class UsersContainer extends React.Component {
     showUsersTable() {
         const users = this.props.users.map((user, i) => (
             <li className='list__item' key={i}>
-                <Link to={'/users/id' + user.id}>
+                <Link to={'/users/id' + user.uid}>
                     {user.firstName} {user.lastName} {this.onlineStatus(user.online)}
                 </Link>
             </li>
