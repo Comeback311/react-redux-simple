@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import tools from '../../tools/index'
+import { getCookie, firstUpper } from '../../tools/index'
 import home from './images/home.svg'
 
 import './index.scss'
@@ -24,7 +24,7 @@ export default class HeaderContainer extends React.Component {
 
     onFetchResponse(data) {
         if (data.success) {
-            if (!tools.getCookie('uid')) {
+            if (!getCookie('uid')) {
                 this.props.logoutUser();
             }
         }
@@ -34,8 +34,8 @@ export default class HeaderContainer extends React.Component {
         return (
             <div className='header'>
                 <div className='header__logo'>
-                    <img width='20' height='20' className='header__logo-icon' src={home} alt=''/>
-                    Hello, <span className='header__login'>{tools.firstUpper(this.props.login)}</span>
+                    <img width='20' height='20' className='header__logo-icon' src={home} alt='' />
+                    Hello, <span className='header__login'>{firstUpper(this.props.login)}</span>
                 </div>
                 <div className='header__logout'>
                     <Link to='' onClick={this.onLogoutClick}>
@@ -45,6 +45,6 @@ export default class HeaderContainer extends React.Component {
                     </Link>
                 </div>
             </div>
-		);
+        );
     }
 };

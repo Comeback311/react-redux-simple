@@ -46,3 +46,6 @@ export const mongoConnect = function (app) {
         app.locals.db = client;
     });
 };
+
+// Поля, которые не должны передаваться на клиент
+export const getSecretFields = ['_id', 'password', 'token', 'login'];

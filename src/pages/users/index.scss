@@ -1,3 +1,57 @@
+.users {
+    margin-top: 20px;
+
+    &__item {
+        display: inline-block;
+        margin: 10px;
+
+        text-align: center;
+
+        &-icon {
+            position: relative;
+            display: inline-block;
+            font-size: 0;
+        }
+
+        &-icon-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+
+            &:hover {
+                filter: brightness(1.03);
+            }
+        }
+
+        &-name {
+            margin-top: 8px;
+
+            font-size: 14px;
+        }
+
+        &_online,
+        &_offline {
+            position: absolute;
+
+            width: 8px;
+            height: 8px;
+
+            right: 0px;
+            bottom: 0px;
+
+            border-radius: 50%;
+        }
+
+        &_online {
+            background: green;
+        }
+
+        &_offline {
+            background: red;
+        }
+    }
+}
+
 .list {
     margin-top: 15px;
 

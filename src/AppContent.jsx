@@ -6,7 +6,7 @@ import { loginUser, logoutUser } from './store/auth/actions';
 
 import Routes from './routes';
 
-import tools from './tools';
+import { getCookie } from './tools';
 
 import './styles/reset.scss';
 import './styles/global.scss';
@@ -19,8 +19,8 @@ class AppContent extends React.Component {
 	}
 
 	tryToLogin() {
-		const uid = tools.getCookie('uid');
-		const login = tools.getCookie('login');
+		const uid = getCookie('uid');
+		const login = getCookie('login');
 
 		if (uid && login) {
 			this.props.loginUser({ uid, login });
@@ -38,9 +38,16 @@ class AppContent extends React.Component {
 	}
 
 	sendOnlineRequest() {
-		fetch('/api/online')
-			.then(r => r.json())
-			.then(data => this.onFetchResponse.call(this, data))
+		requestAnimationFrame(function () {
+			fetch('/api/online?' + this.getRandomHash())
+				.then(r => r.json())
+				.then(data => this.onFetchResponse.call(this, data))
+		}.bind(this));
+	}
+
+	getRandomHash() {
+		// https://stackoverflow.com/questions/1484506/random-color-generator
+		return ((1<<24)*Math.random()|0).toString(16);
 	}
 
 	onFetchResponse(data) {

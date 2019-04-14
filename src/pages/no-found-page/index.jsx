@@ -9,7 +9,7 @@ export default class NoFoundPage extends React.Component {
     render() {
         return (
             <div className='no-found-page'>
-                <img className='no-found-page__image' src={noFoundIcon} />
+                <img className='no-found-page__image' alt='' src={noFoundIcon} />
                 <Link className='no-found-page__link' to=''>Страница не найдена.<br /> Вернуться на главную</Link>
             </div>
 		);

@@ -1,5 +1,5 @@
 import { responseSuccess, responseError } from '../../tools';
-import { isCorrectUserPassword } from './functions';
+import { isCorrectUserPassword, registerUser } from './functions';
 
 export default function loginRouter(req, res, next) {
     const { login, password } = req.body;
@@ -12,6 +12,9 @@ export default function loginRouter(req, res, next) {
 
     const client = req.app.locals.db;
     const collection = client.db('react-vk').collection('users');
+
+    // registerUser({ db: req.app.locals.db.db('react-vk'), login: 'sasha', password: 123, uid: 3, firstName: 'Катя', lastName: 'Катерина', sex: 'female' });
+    // registerUser({ db: req.app.locals.db.db('react-vk'), login: 'robot', password: 123, uid: 4, firstName: 'Робот', lastName: 'Вася', sex: 'male' });
 
     collection.findOne({ login }, (error, result) => {
         if (error || !result) {
@@ -37,6 +40,4 @@ export default function loginRouter(req, res, next) {
         });
     });
 };
-
-// registerUser({ db, login: 'den', password: 123, uid: 1, firstName: 'Денис', lastName: 'Авдеев' });
 // registerUser({ db, login: 'ivan', password: 123, uid: 2, firstName: 'Иван', lastName: 'Иванович' });

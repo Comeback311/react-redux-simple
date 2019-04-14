@@ -4,9 +4,19 @@ import { Link } from 'react-router-dom';
 
 import { Header, Footer } from '../../components';
 
+import maleIcon from '../../assets/images/male-icon.png';
+import femaleIcon from '../../assets/images/female-icon.png';
+
 import './index.scss';
 
 export default class UsersContainer extends React.Component {
+    constructor(props) {
+        super(props);
+
+        // пользователь переходит в оффлайн
+        this.OFFLINE_TIMEOUT = 1000 * 30; // 30 seconds
+    }
+
     componentDidMount() {
         fetch('/api/users')
             .then(r => r.json())
@@ -23,63 +33,43 @@ export default class UsersContainer extends React.Component {
 
     showUsersTable() {
         const users = this.props.users.map((user, i) => (
-            <li className='list__item' key={i}>
-                <Link to={'/users/id' + user.uid}>
-                    {user.firstName} {user.lastName} {this.onlineStatus(user.online)}
-                </Link>
-            </li>
+            <div className='users__item' key={i}>
+                <div className='users__item-icon'>
+                    <Link to={'/users/id' + user.uid}>
+                        <img className='users__item-icon-avatar' alt='' src={user.sex === 'male' ? maleIcon : femaleIcon} />
+                    </Link>
+                    <div className={'users__item_' + (this.isUserOnline(user.online) ? 'online' : 'offline')} />
+                </div>
+                <p className='users__item-name'><Link to={'/users/id' + user.uid}>{user.firstName} {user.lastName}</Link></p>
+            </div>
         ));
 
         return (
-            <ul className='list'>{users}</ul>
+            <div className='users'>
+                {users}
+            </div>
         );
     }
 
-    onlineStatus(online) {
-        if (!online) return '( оффлайн )';
-
-        const OFFLINE_TIMEOUT = 1000 * 30; // 30 seconds
+    isUserOnline(online) {
+        if (!online) return false;
 
         const now = + new Date();
         const diff = now - online;
 
-        if (diff < OFFLINE_TIMEOUT) {
-            return '( онлайн )';
-        }
-
-        const seconds = Math.floor(diff / 1000);
-
-        if (seconds < 60) {
-            return '( был ' + seconds + ' секунд назад )';
-        }
-
-        const minutes = Math.floor(seconds / 60);
-
-        if (minutes < 60) {
-            return '( был ' + minutes + ' минут(у) назад )';
-        }
-
-        const hours = Math.floor(minutes / 60);
-
-        if (hours < 24) {
-            return '( был ' + hours + ' часов(а) назад )';
-        }
-
-        const days = Math.floor(hours / 24);
-
-        return '( был ' + days + ' дня(ей) назад)';
+        return diff < this.OFFLINE_TIMEOUT;
     }
 
     render() {
         return (
-            <div className='users'>
+            <React.Fragment>
                 <Header />
                 <div className='page'>
                     <Link to='/'>&larr; На главную </Link>
                     {this.props.users && this.showUsersTable()}
                 </div>
                 <Footer />
-            </div>
+            </React.Fragment>
         );
     }
 };
