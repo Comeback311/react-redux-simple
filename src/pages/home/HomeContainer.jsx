@@ -38,7 +38,7 @@ export default class HomeContainer extends React.Component {
                 uid: data.uid,
                 login: data.login
             });
-        } else if(data.error) {
+        } else if (data.error) {
             this.props.showErrorText(data.errorText);
         }
     }
@@ -53,19 +53,19 @@ export default class HomeContainer extends React.Component {
 
     renderHome() {
         return (
-            <div className='home'>
+            <React.Fragment>
                 <Header />
                 <div className='page'>
                     <Link to='/users'>Все пользователи</Link>
                 </div>
                 <Footer />
-            </div>
+            </React.Fragment>
         )
     }
 
     render() {
         return (
             this.props.uid ? this.renderHome() : <Auth />
-		);
+        );
     }
 };

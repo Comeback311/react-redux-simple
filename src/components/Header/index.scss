@@ -15,25 +15,13 @@
         font-size: 17px;
         font-weight: 500;
         letter-spacing: .5px;
-
-        &-icon {
-            margin-right: 5px;
-            vertical-align: baseline;
-        }
-
-        position: relative;
-
-        &::before {
-            position: absolute;
-            content: '';
-        }
     }
 
     &__login {
         display: inline-block;
-    }
 
-    &__login::first-letter {
-        color: red;
+        &::first-letter {
+            color: red;
+        }
     }
 }
