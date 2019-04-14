@@ -61,7 +61,13 @@ export default class UsersContainer extends React.Component {
 
         const hours = Math.floor(minutes / 60);
 
-        return '(был ' + hours + ' часов(а) назад)';
+        if (hours < 24) {
+            return '( был ' + hours + ' часов(а) назад )';
+        }
+
+        const days = Math.floor(hours / 24);
+
+        return '( был ' + days + ' дня(ей) назад)';
     }
 
     render() {

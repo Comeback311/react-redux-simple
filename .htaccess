@@ -1,6 +1,0 @@
-PassengerNodejs /home/a/avdeevden/.local/bin/node
-PassengerAppRoot /home/a/avdeevden/avdeevden.beget.tech/public_html
-PassengerAppType node
-PassengerStartupFile react-backend/bin/www
-
-# DirectoryIndex build/index.html
