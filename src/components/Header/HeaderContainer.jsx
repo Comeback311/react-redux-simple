@@ -36,7 +36,7 @@ export default class HeaderContainer extends React.Component {
                     Hello, <span className='header__login'>{tools.firstUpper(this.props.login)}</span>
                 </div>
                 <div className='header__logout'>
-                    <Link to='/' onClick={this.onLogoutClick}>
+                    <Link to='' onClick={this.onLogoutClick}>
                         Выйти
                     </Link>
                 </div>

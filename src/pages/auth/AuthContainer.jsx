@@ -1,12 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
-import { Header, Footer } from '../../components';
-import { Auth } from '../../pages';
 
 import './index.scss'
 
-export default class HomeContainer extends React.Component {
+export default class AuthContainer extends React.Component {
     constructor(props) {
         super(props);
 
@@ -51,21 +47,16 @@ export default class HomeContainer extends React.Component {
         this.props.setPassword(e.target.value);
     }
 
-    renderHome() {
-        return (
-            <div className='home'>
-                <Header />
-                <div className='page'>
-                    <Link to='/users'>Все пользователи</Link>
-                </div>
-                <Footer />
-            </div>
-        )
-    }
-
     render() {
         return (
-            this.props.uid ? this.renderHome() : <Auth />
+            <div className='auth'>
+                <form className='auth__form' onSubmit={this.onSubmit}>
+                    <input type='text' placeholder='login' onChange={this.onLoginChange} />
+                    <input type='password' placeholder='password' onChange={this.onPasswordChange} />
+                    <input type='submit' value='Войти' />
+                    {this.props.errorText && <p className='auth__error'>{this.props.errorText}</p>}
+                </form>
+            </div>
 		);
     }
 };

@@ -2,9 +2,10 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
-import { loginUser } from './store/auth/actions';
+import { loginUser, logoutUser } from './store/auth/actions';
 
 import Routes from './routes';
+import { Auth } from './pages';
 
 import tools from './tools';
 
@@ -15,22 +16,30 @@ class AppContent extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.tryToLogin();
+		this.isLogged = this.tryToLogin();
+
+		if (!this.isLogged && window.location.pathname !== '/') {
+			window.location.href = window.location.origin;
+		}
 	}
 
 	tryToLogin() {
 		const uid = tools.getCookie('uid');
-        const login = tools.getCookie('login');
+		const login = tools.getCookie('login');
 
-        if (uid && login) {
+		if (uid && login) {
 			this.props.loginUser({ uid, login });
 
 			this.updateOnlineStatus();
+
+			return true;
+		} else {
+			return false;
 		}
 	}
-	
+
 	updateOnlineStatus() {
-		setInterval(function() {
+		setInterval(function () {
 			fetch('/api/online')
 				.then(r => r.json())
 				.then(data => this.onFetchResponse.call(this, data))
@@ -45,7 +54,7 @@ class AppContent extends React.Component {
 
 	render() {
 		return (
-			<Routes />
+			this.isLogged ? <Routes /> : <Auth />
 		);
 	}
 };
@@ -57,7 +66,8 @@ const mapStateToProps = state => {
 	};
 }
 const mapDispatchToProps = {
-	loginUser
+	loginUser,
+	logoutUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContent);
