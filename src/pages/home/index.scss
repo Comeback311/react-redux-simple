@@ -3,7 +3,7 @@
 $footer-padding: 10px;
 
 .page {
-    height: calc(100vh - #{$header-height + $footer-height});
+    height: calc(100% - #{$header-height + $footer-height});
 
     padding: $footer-padding;
 }

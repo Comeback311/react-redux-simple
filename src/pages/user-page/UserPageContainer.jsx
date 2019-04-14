@@ -167,7 +167,7 @@ export default class UserPageContainer extends React.Component {
             <React.Fragment>
                 <Header />
                 <div className='page'>
-                    <Link to='/users'>&larr; Списко пользователей </Link>
+                    <Link to='/users'>&larr; Список пользователей </Link>
                     <div className='user-page'>
                         {
                             this.isUserNotFound() ? 'Пользователь не найден.' :
