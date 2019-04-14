@@ -3,23 +3,26 @@ import { connect } from 'react-redux';
 
 import { loginUser, setLogin, setPassword, showErrorText } from '../../store/auth/actions';
 
+import { DefaultPage } from '../../pages';
 import HomeContainer from './HomeContainer';
 
 class Home extends React.Component {
     render() {
         return (
-            <HomeContainer
-                uid={this.props.uid}
-                login={this.props.login}
-                password={this.props.password}
-                errorText={this.props.errorText}
+            <DefaultPage pageContent={
+                <HomeContainer
+                    uid={this.props.uid}
+                    login={this.props.login}
+                    password={this.props.password}
+                    errorText={this.props.errorText}
 
-                setPassword={this.props.setPassword}
-                setLogin={this.props.setLogin}
-                showErrorText={this.props.showErrorText}
-                loginUser={this.props.loginUser}
+                    setPassword={this.props.setPassword}
+                    setLogin={this.props.setLogin}
+                    showErrorText={this.props.showErrorText}
+                    loginUser={this.props.loginUser}
+                />}
             />
-		);
+        );
     }
 };
 

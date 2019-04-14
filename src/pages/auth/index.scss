@@ -1,17 +1,46 @@
-@import '../../styles/variables.scss';
-
-.footer {
-    height: $footer-height;
-
+.auth {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-end;
 
-    &__copy {
-        margin-right: 10px;
-        font-size: 13px;
-        
-        color: cornflowerblue;
-        opacity: .3;
+    height: 100vh;
+
+    &__form {
+        box-sizing: border-box;
+
+        max-width: 370px;
+        width: 100%;
+        padding: 20px;
+        border-radius: 4px;
+        margin: 0 10px;
+
+        box-shadow: 2px 2px 3px 1px #eee;
+        border: 1px solid #eee;
+        background: #fff;
+
+        display: flex;
+        flex-direction: column;
+
+        input {
+            padding: 4px 8px;
+            margin: 4px;
+
+            font-size: 16px;
+
+            outline-color: lightgreen;
+        }
+
+        input {
+            margin-left: 0;
+        }
+    }
+
+    &__error {
+        font-size: 12px;
+        text-align: center;
+        color: red;
+
+        margin: 0;
+        margin-top: 5px;
     }
 }

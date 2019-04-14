@@ -4,14 +4,18 @@ import { connect } from 'react-redux';
 
 import { setAllUsers } from '../../store/users/actions';
 
+import { DefaultPage } from '../../pages';
+
 import UsersContainer from './UsersContainer';
 class Users extends React.Component {
     render() {
         return (
-            <UsersContainer 
-                users={this.props.users}
-                setAllUsers={this.props.setAllUsers}
-            />
+            <DefaultPage pageContent={
+                <UsersContainer
+                    users={this.props.users}
+                    setAllUsers={this.props.setAllUsers}
+                />
+            } />
         );
     }
 };

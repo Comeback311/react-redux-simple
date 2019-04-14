@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { loginUser, logoutUser } from './store/auth/actions';
 
 import Routes from './routes';
-import { Auth } from './pages';
 
 import tools from './tools';
 
@@ -16,11 +15,7 @@ class AppContent extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.isLogged = this.tryToLogin();
-
-		if (!this.isLogged && window.location.pathname !== '/') {
-			window.location.href = window.location.origin;
-		}
+		this.tryToLogin();
 	}
 
 	tryToLogin() {
@@ -31,19 +26,21 @@ class AppContent extends React.Component {
 			this.props.loginUser({ uid, login });
 
 			this.updateOnlineStatus();
-
-			return true;
-		} else {
-			return false;
 		}
 	}
 
 	updateOnlineStatus() {
 		setInterval(function () {
-			fetch('/api/online')
-				.then(r => r.json())
-				.then(data => this.onFetchResponse.call(this, data))
+			this.sendOnlineRequest.call(this);
 		}.bind(this), 10000);
+
+		this.sendOnlineRequest();
+	}
+
+	sendOnlineRequest() {
+		fetch('/api/online')
+			.then(r => r.json())
+			.then(data => this.onFetchResponse.call(this, data))
 	}
 
 	onFetchResponse(data) {
@@ -54,7 +51,7 @@ class AppContent extends React.Component {
 
 	render() {
 		return (
-			this.isLogged ? <Routes /> : <Auth />
+			<Routes />
 		);
 	}
 };

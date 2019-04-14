@@ -1,5 +1,9 @@
 import React from 'react';
 
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './index.scss'
 
 export default class AuthContainer extends React.Component {
@@ -34,7 +38,7 @@ export default class AuthContainer extends React.Component {
                 uid: data.uid,
                 login: data.login
             });
-        } else if(data.error) {
+        } else if (data.error) {
             this.props.showErrorText(data.errorText);
         }
     }
@@ -50,13 +54,21 @@ export default class AuthContainer extends React.Component {
     render() {
         return (
             <div className='auth'>
-                <form className='auth__form' onSubmit={this.onSubmit}>
-                    <input type='text' placeholder='login' onChange={this.onLoginChange} />
-                    <input type='password' placeholder='password' onChange={this.onPasswordChange} />
-                    <input type='submit' value='Войти' />
+                <Form className='auth__form' onSubmit={this.onSubmit}>
+                    <Form.Group controlId="formBasicText">
+                        <Form.Label>Login</Form.Label>
+                        <Form.Control type="text" placeholder="Введите логин" onChange={this.onLoginChange} />
+                    </Form.Group>
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Введите пароль" onChange={this.onPasswordChange} />
+                    </Form.Group>
+                    <Button variant="primary" type="submit" block>
+                        Войти
+                    </Button>
                     {this.props.errorText && <p className='auth__error'>{this.props.errorText}</p>}
-                </form>
+                </Form>
             </div>
-		);
+        );
     }
 };

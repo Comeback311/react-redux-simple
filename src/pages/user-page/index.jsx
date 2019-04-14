@@ -4,11 +4,15 @@ import { connect } from 'react-redux';
 
 import UserPageContainer from './UserPageContainer';
 
+import { DefaultPage } from '../../pages';
+
 class UserPage extends React.Component {
     render() {
         return (
-            <UserPageContainer id={this.props.match.params.id}/>
-		);
+            <DefaultPage pageContent={
+                <UserPageContainer id={this.props.match.params.id} />
+            } />
+        );
     }
 };
 

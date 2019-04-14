@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import tools from '../../tools/index'
 import home from './images/home.svg'
@@ -37,7 +39,9 @@ export default class HeaderContainer extends React.Component {
                 </div>
                 <div className='header__logout'>
                     <Link to='' onClick={this.onLogoutClick}>
-                        Выйти
+                        <Button variant='primary'>
+                            Выйти
+                        </Button>
                     </Link>
                 </div>
             </div>
