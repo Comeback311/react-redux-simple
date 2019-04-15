@@ -16,7 +16,7 @@ export default function loginRouter(req, res, next) {
     // registerUser({ db: req.app.locals.db.db('react-vk'), login: 'sasha', password: 123, uid: 3, firstName: 'Катя', lastName: 'Катерина', sex: 'female' });
     // registerUser({ db: req.app.locals.db.db('react-vk'), login: 'robot', password: 123, uid: 4, firstName: 'Робот', lastName: 'Вася', sex: 'male' });
 
-    collection.findOne({ login }, (error, result) => {
+    collection.findOne({ login: login.toLowerCase() }, (error, result) => {
         if (error || !result) {
             return responseError(res, {
                 errorText: 'Пользователь не найден.'
