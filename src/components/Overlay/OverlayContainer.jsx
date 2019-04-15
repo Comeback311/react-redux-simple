@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { onToggleSidebar } from '../../store/sidebar/actions';
-
 import './index.scss'
 
 export default class OverlayContainer extends React.Component {

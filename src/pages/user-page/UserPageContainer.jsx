@@ -159,6 +159,16 @@ export default class UserPageContainer extends React.Component {
             five: 'дней'
         });
 
+        if (hours > 24) {
+            let textLangAnother = lang(hours - 24, {
+                one: 'час',
+                two: 'часа',
+                five: 'часов'
+            });
+
+            return `${sexText} ${textLang.number} ${textLang.text} ${textLangAnother.number} ${textLangAnother.text} назад`;
+        }
+
         return `${sexText} ${textLang.number} ${textLang.text} назад`;
     }
 
