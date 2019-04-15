@@ -3,14 +3,13 @@ import { connect } from 'react-redux';
 
 import { toggleSidebar } from '../../store/sidebar/actions';
 
-import HeaderContainer from './HeaderContainer'
+import OverlayContainer from './OverlayContainer';
 
-class Header extends React.Component {
+class Overlay extends React.Component {
 	render() {
 		return (
-			<HeaderContainer 
-                uid={this.props.uid}
-                login={this.props.login}
+			<OverlayContainer 
+                isOpenedSidebar={this.props.isOpenedSidebar}
 
                 toggleSidebar={this.props.toggleSidebar}
             />
@@ -20,8 +19,7 @@ class Header extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        uid: state.auth.uid,
-        login: state.auth.login
+        isOpenedSidebar: state.sidebar.isOpened
     };
 }
 
@@ -29,4 +27,4 @@ const mapDispatchToProps = {
     toggleSidebar
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Overlay);

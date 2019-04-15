@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './index.scss';
+
 import noFoundIcon from '../../assets/images/no-found-page.png';
 
 export default class NoFoundPage extends React.Component {

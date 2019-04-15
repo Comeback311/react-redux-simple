@@ -2,8 +2,6 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { Header, Footer } from '../../components';
-
 import maleIcon from '../../assets/images/male-icon.png';
 import femaleIcon from '../../assets/images/female-icon.png';
 
@@ -63,12 +61,8 @@ export default class UsersContainer extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Header />
-                <div className='page'>
-                    <Link to='/'>&larr; На главную </Link>
-                    {this.props.users && this.showUsersTable()}
-                </div>
-                <Footer />
+                <Link to='/'>&larr; На главную </Link>
+                {this.props.users && this.showUsersTable()}
             </React.Fragment>
         );
     }

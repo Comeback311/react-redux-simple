@@ -1,31 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { loginUser, setLogin, setPassword, showErrorText, loadingLoginUser  } from '../../store/auth/actions';
-
-import { DefaultPage } from '../../pages';
+import { loginUser, setLogin, setPassword, showErrorText, loadingLoginUser } from '../../store/auth/actions';
 
 import AuthContainer from './AuthContainer';
 
 class Auth extends React.Component {
     render() {
         return (
-            <DefaultPage pageContent={
-                <AuthContainer
-                    uid={this.props.uid}
-                    login={this.props.login}
-                    password={this.props.password}
-                    errorText={this.props.errorText}
-                    loading={this.props.loading}
+            <AuthContainer
+                uid={this.props.uid}
+                login={this.props.login}
+                password={this.props.password}
+                errorText={this.props.errorText}
+                loading={this.props.loading}
 
-                    setPassword={this.props.setPassword}
-                    setLogin={this.props.setLogin}
-                    showErrorText={this.props.showErrorText}
-                    loginUser={this.props.loginUser}
-                    loadingLoginUser={this.props.loadingLoginUser}
-                />}
+                setPassword={this.props.setPassword}
+                setLogin={this.props.setLogin}
+                showErrorText={this.props.showErrorText}
+                loginUser={this.props.loginUser}
+                loadingLoginUser={this.props.loadingLoginUser}
             />
-		);
+        );
     }
 };
 

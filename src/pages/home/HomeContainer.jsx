@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import { Header, Footer } from '../../components';
 import { Auth } from '../../pages';
 
 import './index.scss'
@@ -54,11 +52,7 @@ export default class HomeContainer extends React.Component {
     renderHome() {
         return (
             <React.Fragment>
-                <Header />
-                <div className='page'>
-                    <Link to='/users'>Все пользователи</Link>
-                </div>
-                <Footer />
+                <Link to='/users'>Все пользователи</Link>
             </React.Fragment>
         )
     }

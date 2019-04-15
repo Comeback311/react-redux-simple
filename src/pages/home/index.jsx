@@ -8,20 +8,24 @@ import HomeContainer from './HomeContainer';
 
 class Home extends React.Component {
     render() {
-        return (
-            <DefaultPage pageContent={
-                <HomeContainer
-                    uid={this.props.uid}
-                    login={this.props.login}
-                    password={this.props.password}
-                    errorText={this.props.errorText}
+        const content = (
+            <HomeContainer
+                uid={this.props.uid}
+                login={this.props.login}
+                password={this.props.password}
+                errorText={this.props.errorText}
 
-                    setPassword={this.props.setPassword}
-                    setLogin={this.props.setLogin}
-                    showErrorText={this.props.showErrorText}
-                    loginUser={this.props.loginUser}
-                />}
+                setPassword={this.props.setPassword}
+                setLogin={this.props.setLogin}
+                showErrorText={this.props.showErrorText}
+                loginUser={this.props.loginUser}
             />
+        );
+
+        return (
+            this.props.uid ?
+                <DefaultPage pageContent={content} /> :
+                content
         );
     }
 };

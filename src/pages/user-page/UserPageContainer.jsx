@@ -9,8 +9,6 @@ import { Loader } from '../../components';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Header, Footer } from '../../components';
-
 import maleIcon from '../../assets/images/male-icon.png';
 import femaleIcon from '../../assets/images/female-icon.png';
 
@@ -47,7 +45,7 @@ export default class UserPageContainer extends React.Component {
     getInfoAboutUser(uid) {
         this.props.clearUserData();
 
-        this.timer = setTimeout(function() {
+        this.timer = setTimeout(function () {
             this.props.loadingLoginUser();
         }.bind(this), 800);
 
@@ -175,20 +173,16 @@ export default class UserPageContainer extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Header />
-                <div className='page'>
-                    <Link to='/users'>&larr; Список пользователей </Link>
-                    <div className='user-page'>
-                        {
-                            this.isUserNotFound() ? 'Пользователь не найден.' :
-                                this.isUserFound() ? this.userFoundComponent() : ''
-                        }
-                        {
-                            this.props.loading && !this.props.found && <Loader />
-                        }
-                    </div>
+                <Link to='/users'>&larr; Список пользователей </Link>
+                <div className='user-page'>
+                    {
+                        this.isUserNotFound() ? 'Пользователь не найден.' :
+                            this.isUserFound() ? this.userFoundComponent() : ''
+                    }
+                    {
+                        this.props.loading && !this.props.found && <Loader />
+                    }
                 </div>
-                <Footer />
             </React.Fragment>
         );
     }

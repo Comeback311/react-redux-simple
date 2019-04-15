@@ -65,15 +65,15 @@ export default class AuthContainer extends React.Component {
         return (
             <div className='auth'>
                 <Form className='auth__form' onSubmit={this.onSubmit}>
-                    <Form.Group controlId="formBasicText">
+                    <Form.Group controlId='formBasicText'>
                         <Form.Label>Login</Form.Label>
-                        <Form.Control type="text" placeholder="Введите логин" onChange={this.onLoginChange} />
+                        <Form.Control type='text' size='sm' placeholder='Введите логин' onChange={this.onLoginChange} />
                     </Form.Group>
-                    <Form.Group controlId="formBasicPassword">
+                    <Form.Group controlId='formBasicPassword'>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Введите пароль" onChange={this.onPasswordChange} />
+                        <Form.Control type='password' size='sm' placeholder='Введите пароль' onChange={this.onPasswordChange} />
                     </Form.Group>
-                    <Button variant="primary" type="submit" block>
+                    <Button variant='primary' type='submit' block size='sm'>
                         Войти
                     </Button>
                     {this.props.errorText && <p className='auth__error'>{this.props.errorText}</p>}
