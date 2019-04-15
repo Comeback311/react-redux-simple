@@ -22,6 +22,8 @@ export default class UserPageContainer extends React.Component {
 
         this.init();
 
+        this._timer = null;
+
         // пользователь переходит в оффлайн
         this.OFFLINE_TIMEOUT = 1000 * 30; // 30 seconds
     }
@@ -45,7 +47,9 @@ export default class UserPageContainer extends React.Component {
     getInfoAboutUser(uid) {
         this.props.clearUserData();
 
-        this.props.loadingLoginUser();
+        this.timer = setTimeout(function() {
+            this.props.loadingLoginUser();
+        }.bind(this), 800);
 
         fetch('/api/user', {
             method: 'POST',
@@ -60,6 +64,8 @@ export default class UserPageContainer extends React.Component {
     }
 
     onFetchResponse(data) {
+        clearTimeout(this.timer);
+
         // пользователь не найден
         if (data.errorCode === 100) {
             this.props.setUserNotFound();

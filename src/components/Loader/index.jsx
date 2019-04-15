@@ -7,7 +7,7 @@ import './index.scss';
 export default class Loader extends React.Component {
     render() {
         return (
-            <img className='loader' src={pacmanIcon} />
+            <img className='loader' src={pacmanIcon} alt=''/>
         );
     }
 };

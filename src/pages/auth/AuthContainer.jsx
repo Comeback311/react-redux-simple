@@ -12,6 +12,8 @@ export default class AuthContainer extends React.Component {
     constructor(props) {
         super(props);
 
+        this.timer = null;
+
         this.onSubmit = this.onSubmit.bind(this);
         this.onLoginChange = this.onLoginChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
@@ -20,7 +22,9 @@ export default class AuthContainer extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
-        this.props.loadingLoginUser();
+        this.timer = setTimeout(function() {
+            this.props.loadingLoginUser();
+        }.bind(this), 800);
 
         const { login, password } = this.props;
 
@@ -37,6 +41,8 @@ export default class AuthContainer extends React.Component {
     }
 
     onFetchResponse(data) {
+        clearTimeout(this.timer);
+
         if (data.success) {
             this.props.loginUser({
                 uid: data.uid,
