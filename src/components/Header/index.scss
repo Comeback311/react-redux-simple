@@ -5,10 +5,6 @@
 	height: $header-height;
 	background: lighten($color: cornflowerblue, $amount: 20);
 
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-
 	padding: 0 10px;
 
 	&__logo {
@@ -16,7 +12,10 @@
 		font-weight: 500;
 		letter-spacing: 0.5px;
 
+		line-height: $header-height;
+
 		display: flex;
+		justify-content: space-between;
 		align-items: center;
 	}
 
@@ -43,7 +42,8 @@
 }
 
 .sidebar {
-    padding: 25px;
+	padding: 25px;
+	padding-top: 18px;
     z-index: 1;
     // padding-top: 60px;
 	box-sizing: border-box;
@@ -56,7 +56,7 @@
 	transform: translateX(calc(-100% - 10px));
 
 	top: 0;
-	transition: 0.5s all;
+	transition: 0.5s transform ease;
 
 	&_opened {
 		transform: translateX(-10px);
@@ -71,8 +71,12 @@
     }
 
     .btn {
-        margin: 10px 0;
-    }
+		margin: 10px 0;
+	}
+	
+	a:hover {
+		text-decoration: none;
+	}
 
 	&__close {
 		width: 30px;

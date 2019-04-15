@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { lang } from '../../tools';
 
+import { Loader } from '../../components';
+
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -42,6 +44,8 @@ export default class UserPageContainer extends React.Component {
 
     getInfoAboutUser(uid) {
         this.props.clearUserData();
+
+        this.props.loadingLoginUser();
 
         fetch('/api/user', {
             method: 'POST',
@@ -128,7 +132,7 @@ export default class UserPageContainer extends React.Component {
                 two: 'минуты',
                 five: 'минут'
             });
-    
+
             return `${sexText} ${textLang.number} ${textLang.text} назад`;
         }
 
@@ -140,7 +144,7 @@ export default class UserPageContainer extends React.Component {
                 two: 'часа',
                 five: 'часов'
             });
-    
+
             return `${sexText} ${textLang.number} ${textLang.text} назад`;
         }
 
@@ -172,6 +176,9 @@ export default class UserPageContainer extends React.Component {
                         {
                             this.isUserNotFound() ? 'Пользователь не найден.' :
                                 this.isUserFound() ? this.userFoundComponent() : ''
+                        }
+                        {
+                            this.props.loading && !this.props.found && <Loader />
                         }
                     </div>
                 </div>

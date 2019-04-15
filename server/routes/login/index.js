@@ -1,4 +1,4 @@
-import { responseSuccess, responseError } from '../../tools';
+import { responseSuccess, responseError, sleep } from '../../tools';
 import { isCorrectUserPassword, registerUser } from './functions';
 
 export default function loginRouter(req, res, next) {

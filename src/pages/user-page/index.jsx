@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { setUserNotFound, setUserData, clearUserData } from '../../store/user/actions';
+import { loadingLoginUser } from '../../store/auth/actions';
 
 import UserPageContainer from './UserPageContainer';
 
@@ -12,13 +13,16 @@ class UserPage extends React.Component {
     render() {
         return (
             <DefaultPage pageContent={
-                <UserPageContainer 
+                <UserPageContainer
                     id={this.props.match.params.id}
                     found={this.props.found}
                     user={this.props.user}
+                    loading={this.props.loading}
+
                     setUserNotFound={this.props.setUserNotFound}
                     setUserData={this.props.setUserData}
                     clearUserData={this.props.clearUserData}
+                    loadingLoginUser={this.props.loadingLoginUser}
                 />
             } />
         );
@@ -29,13 +33,15 @@ class UserPage extends React.Component {
 const mapStateToProps = state => {
     return {
         found: state.user.found,
-        user: state.user.user
+        user: state.user.user,
+        loading: state.auth.loading
     };
 }
 const mapDispatchToProps = {
     setUserNotFound,
     setUserData,
-    clearUserData
+    clearUserData,
+    loadingLoginUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage);

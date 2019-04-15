@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Loader } from '../../components';
+
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,6 +19,8 @@ export default class AuthContainer extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
+
+        this.props.loadingLoginUser();
 
         const { login, password } = this.props;
 
@@ -68,6 +72,7 @@ export default class AuthContainer extends React.Component {
                     </Button>
                     {this.props.errorText && <p className='auth__error'>{this.props.errorText}</p>}
                 </Form>
+                {this.props.loading && <Loader />}
             </div>
         );
     }

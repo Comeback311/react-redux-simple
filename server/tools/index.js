@@ -16,6 +16,10 @@ export const responseError = function (res, data = {}) {
     });
 }
 
+export const sleep = milliseconds => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
 export const uconsole = function (data) {
     const bold = '\x1b[1m';
     const underscore = '\x1b[4m';

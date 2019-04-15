@@ -5,6 +5,7 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
 export const SHOW_ERROR_TEXT = 'SHOW_ERROR_TEXT';
+export const LOADING_LOGIN_USER = 'LOADING_LOGIN_USER';
 
 export const setLogin = login => ({
     type: AUTH_SET_LOGIN,
@@ -31,4 +32,7 @@ export const showErrorText = text => ({
     payload: text
 })
 
-
+export const loadingLoginUser = loading => ({
+    type: LOADING_LOGIN_USER,
+    payload: loading
+})

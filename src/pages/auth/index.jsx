@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { loginUser, setLogin, setPassword, showErrorText } from '../../store/auth/actions';
+import { loginUser, setLogin, setPassword, showErrorText, loadingLoginUser  } from '../../store/auth/actions';
 
 import { DefaultPage } from '../../pages';
 
@@ -16,11 +16,13 @@ class Auth extends React.Component {
                     login={this.props.login}
                     password={this.props.password}
                     errorText={this.props.errorText}
+                    loading={this.props.loading}
 
                     setPassword={this.props.setPassword}
                     setLogin={this.props.setLogin}
                     showErrorText={this.props.showErrorText}
                     loginUser={this.props.loginUser}
+                    loadingLoginUser={this.props.loadingLoginUser}
                 />}
             />
 		);
@@ -32,14 +34,16 @@ const mapStateToProps = state => {
         login: state.auth.login,
         password: state.auth.password,
         uid: state.auth.uid,
-        errorText: state.auth.errorText
+        errorText: state.auth.errorText,
+        loading: state.auth.loading
     };
 }
 const mapDispatchToProps = {
     setLogin,
     setPassword,
     loginUser,
-    showErrorText
+    showErrorText,
+    loadingLoginUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);

@@ -1,10 +1,11 @@
-import { AUTH_SET_LOGIN, AUTH_SET_PASSWORD, LOGIN_USER, LOGOUT_USER, SHOW_ERROR_TEXT } from './actions';
+import { AUTH_SET_LOGIN, AUTH_SET_PASSWORD, LOGIN_USER, LOGOUT_USER, SHOW_ERROR_TEXT, LOADING_LOGIN_USER } from './actions';
 import { deleteCookie } from '../../../src/tools';
 
 const defaultState = {
     login: '',
     password: '',
-    errorText: ''
+    errorText: '',
+    loading: false
 };
 
 export const authReducer = (state = defaultState, action) => {
@@ -28,7 +29,8 @@ export const authReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 uid: action.payload.uid,
-                login: action.payload.login
+                login: action.payload.login,
+                loading: false
             };
 
         case LOGOUT_USER:
@@ -39,15 +41,22 @@ export const authReducer = (state = defaultState, action) => {
             deleteCookie('login');
 
             return {
-                ...state
+                ...state,
+                loading: false
             };
 
-        case SHOW_ERROR_TEXT: {
+        case SHOW_ERROR_TEXT:
             return {
                 ...state,
-                errorText: action.payload
+                errorText: action.payload,
+                loading: false
             };
-        }
+
+        case LOADING_LOGIN_USER:
+            return {
+                ...state,
+                loading: true
+            };
 
         default:
             return state;

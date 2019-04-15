@@ -1,4 +1,4 @@
-import { responseSuccess, responseError } from '../../tools';
+import { responseSuccess, responseError, sleep } from '../../tools';
 import { prepareUser } from './functions';
 
 export default function userRouter(req, res, next) {

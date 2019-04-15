@@ -43,39 +43,39 @@ export default class HeaderContainer extends React.Component {
             <div className='header'>
                 <div className='header__logo'>
                     <img className='header__burger' src={burgerMenuIcon} onClick={this.onClickMenu} alt='' />
-                    <p>
-                        Hello, <span className='header__login'>{firstUpper(this.props.login)}</span>
-                    </p>
-                </div>
-                <div className='header__logout'>
-                    <Link to='' onClick={this.onLogoutClick}>
-                        <Button variant='primary'>
-                            Выйти
-                        </Button>
-                    </Link>
+                    <p className='header__login'>{firstUpper(this.props.login)}</p>
                 </div>
                 <div className={'overlay ' + (this.state.isOpenedSidebar ? ' overlay_opened' : '')} onClick={this.onSidebarClick}></div>
                 {<div className={'sidebar ' + (this.state.isOpenedSidebar ? 'sidebar_opened' : '')}>
                     <div className='sidebar__header'>
-                        <img className='sidebar__close' src={crossIcon} onClick={this.onSidebarClick} alt=''/>
+                        <img className='sidebar__close' src={crossIcon} onClick={this.onSidebarClick} alt='' />
                     </div>
                     <div className='sidebar__content'>
                         <div className='sidebar__top'>
-                            <Button block variant='success'>
+                            <Link to='' onClick={this.onSidebarClick}>
+                                <Button block variant='primary' onClick={this.onSidebarClick}>
+                                    Главная
+                                </Button>
+                            </Link>
+                            <Button block variant='success' onClick={this.onSidebarClick}>
                                 Друзья
                             </Button>
-                            <Button block variant='success'>
+                            <Button block variant='success' onClick={this.onSidebarClick}>
                                 Сообщения
                             </Button>
-                            <Button block variant='success'>
-                                Пользователи
-                            </Button>
+                            <Link to='/users' onClick={this.onSidebarClick}>
+                                <Button block variant='success'>
+                                    Пользователи
+                                </Button>
+                            </Link>
                         </div>
 
                         <div className='sidebar__bottom'>
-                            <Button block variant='info'>
-                                Выход
-                        </Button>
+                            <Link to='' onClick={this.onSidebarClick}>
+                                <Button block variant='info' onClick={this.onLogoutClick}>
+                                    Выход
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </div>}
