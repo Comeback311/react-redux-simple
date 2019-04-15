@@ -4,6 +4,10 @@ export const getCookie = function (name) {
     if (match) return match[2];
 };
 
+export const deleteCookie = function (name) {
+    document.cookie = name + "=;domain=" + window.location.hostname + ";path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT";
+}
+
 export const firstUpper = function (str) {
     return str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
 };

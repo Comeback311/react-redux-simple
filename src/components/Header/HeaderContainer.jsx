@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import burgerMenuIcon from '../../assets/images/burger-menu.svg';
 import crossIcon from '../../assets/images/cross.svg';
 
-import { getCookie, firstUpper } from '../../tools/index'
+import { firstUpper } from '../../tools/index'
 
 import './index.scss'
 
@@ -35,17 +35,7 @@ export default class HeaderContainer extends React.Component {
     }
 
     onLogoutClick() {
-        fetch('/api/logout')
-            .then(r => r.json())
-            .then(data => this.onFetchResponse.call(this, data))
-    }
-
-    onFetchResponse(data) {
-        if (data.success) {
-            if (!getCookie('uid')) {
-                this.props.logoutUser();
-            }
-        }
+        this.props.logoutUser();
     }
 
     render() {
@@ -67,7 +57,7 @@ export default class HeaderContainer extends React.Component {
                 <div className={'overlay ' + (this.state.isOpenedSidebar ? ' overlay_opened' : '')} onClick={this.onSidebarClick}></div>
                 {<div className={'sidebar ' + (this.state.isOpenedSidebar ? 'sidebar_opened' : '')}>
                     <div className='sidebar__header'>
-                        <img className='sidebar__close' src={crossIcon} onClick={this.onSidebarClick} />
+                        <img className='sidebar__close' src={crossIcon} onClick={this.onSidebarClick} alt=''/>
                     </div>
                     <div className='sidebar__content'>
                         <div className='sidebar__top'>
