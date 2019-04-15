@@ -42,6 +42,7 @@ export default class HeaderContainer extends React.Component {
         return (
             <div className='header'>
                 <div className='header__logo'>
+                    <svg className='header__burger' onClick={this.onClickMenu} xmlns="http://www.w3.org/2000/svg"><path d="M4 10h24a2 2 0 0 0 0-4H4a2 2 0 0 0 0 4zm24 4H4a2 2 0 0 0 0 4h24a2 2 0 0 0 0-4zm0 8H4a2 2 0 0 0 0 4h24a2 2 0 0 0 0-4z"/></svg>
                     <img className='header__burger' src={burgerMenuIcon} onClick={this.onClickMenu} alt='' />
                     <p className='header__login'>{firstUpper(this.props.login)}</p>
                 </div>
