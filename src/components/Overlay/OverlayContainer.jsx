@@ -36,6 +36,7 @@ export default class OverlayContainer extends React.Component {
         const xAbs = Math.abs(this.initialPoint.pageX - this.finalPoint.pageX);
         const yAbs = Math.abs(this.initialPoint.pageY - this.finalPoint.pageY);
 
+        /* eslint-disable-next-line no-mixed-operators */
         return xAbs > 20 || yAbs > 20 && xAbs > yAbs && this.finalPoint.pageX < this.initialPoint.pageX;
     }
 

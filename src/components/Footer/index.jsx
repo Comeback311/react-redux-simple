@@ -1,13 +1,32 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import './index.scss'
+import FooterContainer from './FooterContainer'
 
-export default class Footer extends React.Component {
-    render() {
-        return (
-            <div className='footer'>
-                <div className='footer__copy'>Avdeev Denis &copy;</div>
-            </div>
-        );
-    }
+import { startAnimateFooter, stopAnimateFooter } from '../../store/footer/actions';
+
+class Footer extends React.Component {
+	render() {
+		return (
+			<FooterContainer 
+                isAnimatedFooter={this.props.isAnimatedFooter}
+
+                startAnimateFooter={this.props.startAnimateFooter}
+                stopAnimateFooter={this.props.stopAnimateFooter}
+            />
+		);
+	}
 };
+
+const mapStateToProps = state => {
+    return {
+        isAnimatedFooter: state.footer.isAnimated
+    };
+}
+
+const mapDispatchToProps = {
+    startAnimateFooter,
+    stopAnimateFooter
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer);

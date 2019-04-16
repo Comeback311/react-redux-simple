@@ -8,10 +8,38 @@
     justify-content: flex-end;
 
     &__copy {
-        margin-right: 10px;
+        user-select: none;
+
         font-size: 13px;
         
         color: cornflowerblue;
         opacity: .3;
+
+        height: $footer-height;
+        line-height: $footer-height;
+
+        padding: 0 10px;
+
+        &_animated {
+            color: orange;
+            animation-name: rotate-flip;
+            animation-duration: .5s;
+            animation-iteration-count: 1;
+            animation-timing-function: linear;
+        }
+
+        @keyframes rotate-flip {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(180deg) scale(2);
+            }
+
+            100% {
+                transform: rotate(360deg) scale(1);
+            }
+        }
     }
 }
