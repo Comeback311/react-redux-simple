@@ -6,22 +6,22 @@ $sidebar-header-height: 50px;
 	z-index: 1;
 	box-sizing: border-box;
 
-    max-width: 300px;
-    
-    overflow-y: auto;
+	max-width: 300px;
+
+	overflow-y: auto;
 
 	width: calc(100% - 60px);
 	height: 100%;
 	background: rgba(10, 10, 10, 0.2);
 	background: #373a47;
 	position: absolute;
-    transform: translateX(-100%);
-    top: 0;
+	transform: translateX(-100%);
+	top: 0;
 
-	transition: 0.5s transform ease-in-out;
+	transition: .4s transform ease-in-out;
 
 	&_opened {
-        transform: translateX(0);
+		transform: translateX(0);
 	}
 
 	&__content {
@@ -33,8 +33,8 @@ $sidebar-header-height: 50px;
 	}
 
 	.btn {
-        margin: 11px 0;
-        padding: 6px;
+		margin: 11px 0;
+		padding: 6px;
 	}
 
 	a:hover {
@@ -43,16 +43,16 @@ $sidebar-header-height: 50px;
 
 	&__close {
 		width: 30px;
-        height: 30px;
-        padding: 5px;
-        right: -5px;
+		height: 30px;
+		padding: 5px;
+		right: -5px;
 
-        cursor: pointer;
-        position: absolute;
+		cursor: pointer;
+		position: absolute;
 	}
 
 	&__header {
-        height: $sidebar-header-height;
-        position: relative;
+		height: $sidebar-header-height;
+		position: relative;
 	}
 }
