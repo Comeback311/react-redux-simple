@@ -5,7 +5,7 @@ export const getCookie = function (name) {
 };
 
 export const deleteCookie = function (name) {
-    document.cookie = name + "=;domain=" + window.location.hostname + ";path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT";
+    document.cookie = name + "=;domain=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT";
 }
 
 export const firstUpper = function (str) {
