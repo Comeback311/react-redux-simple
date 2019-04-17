@@ -1,0 +1,69 @@
+$root: '.message';
+
+$in-message-avatar-size: 40px;
+
+.message {
+    padding: 8px 0;
+    font-size: 0;
+
+    &__info,
+    &__text,
+    &__date {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &__date {
+        float: right;
+
+        font-size: 11px;
+
+        color: #cdcdcd;
+        letter-spacing: .5px;
+    }
+
+    &__fio {
+        font-size: 12px;
+        color: darkblue;
+    }
+
+    &__text {
+        font-size: 13px;
+        margin-top: 10px;
+        line-height: 18px;
+        word-break: break-word;
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+    }
+
+    &__avatar {
+        height: $in-message-avatar-size;
+        width: $in-message-avatar-size;
+    }
+
+    &__left, 
+    &__right {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &__left {
+        padding-right: 10px;
+    }
+
+    &__right {
+        display: inline-block;
+        width: calc(100% - #{$in-message-avatar-size + 10px});
+        vertical-align: top;
+        padding-top: 4px;
+    }
+
+    &__about {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

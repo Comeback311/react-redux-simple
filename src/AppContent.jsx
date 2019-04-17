@@ -22,6 +22,12 @@ class AppContent extends React.Component {
 		if (this.props.uid) {
 			this.updateOnlineStatus();
 		}
+
+		// var socket = io();
+		// socket.emit('chat message', 'test message');
+		// socket.on('chat message', function(msg){
+		//   console.log('kek chat message');
+		// });
 	}
 
 	tryToLogin() {

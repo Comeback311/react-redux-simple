@@ -1,0 +1,93 @@
+$textarea-height: 60px;
+
+.user-mail {
+    background: #fff;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    height: 100%;
+
+    border: 1px solid #eee;
+    border-top: none;
+
+    &__field {
+        border-top: 1px solid #eee;
+        font-size: 0;
+        height: $textarea-height;
+        text-align: center;
+
+        display: flex;
+        align-items: center;
+    }
+
+    &__content {
+        height: 100%;
+    }
+
+    &__messages {
+        height: calc(100% - #{$textarea-height});
+        padding: 0 10px;
+
+        overflow-y: auto;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+    &__textarea {
+        line-height: 18px;
+        border: none;
+        height: 100%;
+        width: calc(100% - 40px);
+        overflow: auto;
+
+        border-radius: 0;
+
+        resize: none;
+        outline: none;
+        font-size: 13px;
+        padding: 10px;
+        padding-right: 0;
+        vertical-align: middle;
+    }
+
+    &__actions {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 10px;
+    }
+
+    &__action-send {
+        width: 40px;
+        height: 40px;
+        transition: .1s transform ease-in-out;
+
+        &:active {
+            transform: scale(.95);
+        }
+    }
+
+    &__empty {
+        color: #555;
+        display: flex;
+        align-items: center;
+
+        height: 100%;
+        text-align: center;
+        line-height: 20px;
+        font-size: 13px;
+    }
+
+    &__error {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+
+        font-size: 14px;
+        color: darkred;
+
+        text-align: center;
+        line-height: 20px;
+        padding: 0 10px;
+    }
+}

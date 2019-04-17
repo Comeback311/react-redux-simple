@@ -15,6 +15,7 @@ class UserPage extends React.Component {
             <DefaultPage pageContent={
                 <UserPageContainer
                     id={this.props.match.params.id}
+                    uid={this.props.uid}
                     found={this.props.found}
                     user={this.props.user}
                     loading={this.props.loading}
@@ -32,6 +33,7 @@ class UserPage extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        uid: Number(state.auth.uid),
         found: state.user.found,
         user: state.user.user,
         loading: state.auth.loading

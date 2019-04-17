@@ -48,6 +48,7 @@ export default class AuthContainer extends React.Component {
                 uid: data.uid,
                 login: data.login
             });
+            localStorage.setItem('sex', data.sex);
         } else if (data.error) {
             this.props.showErrorText(data.errorText);
         }

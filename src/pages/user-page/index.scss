@@ -34,6 +34,11 @@
         font-size: 0;
     }
 
+    &__text {
+        margin-top: 8px;
+        font-size: 13px;
+    }
+
     &__status_offline,
     &__status_online {
         position: absolute;

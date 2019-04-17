@@ -4,11 +4,12 @@ export function isCorrectUserPassword(dbPassword, userPassword) {
     return dbPassword === hashPassword(userPassword);
 }
 
-export function registerUser({ db, login, password, uid, firstName, lastName }) {
+export function registerUser({ db, login, password, uid, firstName, lastName, sex }) {
     const collection = db.collection('users');
 
     collection.insertOne({
-        login, token: getToken(), uid, password: hashPassword(password), firstName, lastName
+        login, token: getToken(), uid, password: hashPassword(password), firstName, lastName,
+        sex
     }, function (err, result) {
         if (err) {
             return console.log(err);

@@ -56,9 +56,10 @@ export default class SidebarContainer extends React.Component {
                     <div className='sidebar__content'>
                         <div className='sidebar__top'>
                             {button({ text: 'Главная', variant: 'primary', link: '' })}
-                            {button({ text: 'Друзья' })}
-                            {button({ text: 'Сообщения' })}
                             {button({ text: 'Пользователи', link: '/users' })}
+                            {button({ text: 'Сообщения' })}
+                            {button({ text: 'Друзья' })}
+                            
                         </div>
                         <div className='sidebar__bottom'>
                             {

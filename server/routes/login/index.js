@@ -13,8 +13,9 @@ export default function loginRouter(req, res, next) {
     const client = req.app.locals.db;
     const collection = client.db('react-vk').collection('users');
 
-    // registerUser({ db: req.app.locals.db.db('react-vk'), login: 'sasha', password: 123, uid: 3, firstName: 'Катя', lastName: 'Катерина', sex: 'female' });
-    // registerUser({ db: req.app.locals.db.db('react-vk'), login: 'robot', password: 123, uid: 4, firstName: 'Робот', lastName: 'Вася', sex: 'male' });
+    // registerUser({ db: req.app.locals.db.db('react-vk'), login: 'kate', password: 123, uid: 2, firstName: 'Катя', lastName: 'Катерина', sex: 'female' });
+    // registerUser({ db: req.app.locals.db.db('react-vk'), login: 'ivan', password: 123, uid: 3, firstName: 'Иван', lastName: 'Иванович', sex: 'male' });
+    // registerUser({ db: req.app.locals.db.db('react-vk'), login: 'denis', password: 123, uid: 1, firstName: 'Денис', lastName: 'Авдеев', sex: 'male' });
 
     let prepareLogin = login.trim().toLowerCase();
 
@@ -38,7 +39,8 @@ export default function loginRouter(req, res, next) {
 
         return responseSuccess(res, {
             uid: result.uid,
-            login: result.login
+            login: result.login,
+            sex: result.sex
         });
     });
 };

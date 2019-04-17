@@ -33,3 +33,9 @@ export const lang = function (number, texts) {
         return { number, text: texts.five };
     }
 }
+
+export const isCorrectUid = function (id) {
+    const parsed = id.split('id');
+
+    return parsed.length > 1 && !isNaN(parsed[1]) && parsed[1];
+}

@@ -15,11 +15,11 @@ class DefaultPage extends React.Component {
         return (
             <React.Fragment>
                 <Header />
-                <div className='page'>
+                <div className={'page' + (this.props.addedClasses ? ` ${this.props.addedClasses}` : '')}>
                     {this.props.pageContent}
                 </div>
                 <Sidebar />
-                <Footer />
+                {!this.props.noFooter && <Footer />}    
             </React.Fragment>
         )
     }

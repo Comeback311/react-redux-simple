@@ -7,3 +7,10 @@ body {
 
     font-family: 'Comfortaa', cursive;
 }
+
+.btn + .browser-link,
+.browser-link + .btn {
+    margin-top: .5rem;
+    display: block;
+}
+

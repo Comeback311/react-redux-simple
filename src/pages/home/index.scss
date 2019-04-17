@@ -3,9 +3,15 @@
 $footer-padding: 10px;
 
 .page {
-    height: calc(100% - #{$header-height + $footer-height});
+    min-height: calc(100% - #{$header-height + $footer-height});
+    height: auto;
 
     padding: $footer-padding;
+
+    &_messages {
+        padding: 0;
+        height: calc(100% - #{$header-height});
+    }
 }
 
 a {

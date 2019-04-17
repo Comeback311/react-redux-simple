@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { lang } from '../../tools';
+import { lang, isCorrectUid } from '../../tools';
 
 import { Loader } from '../../components';
 
@@ -24,10 +24,12 @@ export default class UserPageContainer extends React.Component {
 
         // пользователь переходит в оффлайн
         this.OFFLINE_TIMEOUT = 1000 * 30; // 30 seconds
+
+        this.onAddToFriendsButton = this.onAddToFriendsButton.bind(this);
     }
 
     init() {
-        const uid = this.getUserIdByProp(this.props.id);
+        const uid = isCorrectUid(this.props.id);
 
         if (!uid) {
             this.props.setUserNotFound();
@@ -36,10 +38,8 @@ export default class UserPageContainer extends React.Component {
         }
     }
 
-    getUserIdByProp(id) {
-        const parsed = id.split('id');
-
-        return parsed.length > 1 && !isNaN(parsed[1]) && parsed[1];
+    onAddToFriendsButton() {
+        console.log('add');
     }
 
     getInfoAboutUser(uid) {
@@ -86,13 +86,26 @@ export default class UserPageContainer extends React.Component {
                 </div>
                 <p className='user-page__name'>{user.firstName} {user.lastName}</p>
                 <p className={'user-page__text_' + (isUserOnline ? 'online' : 'offline')}>{this.getOnlineStatus(user.online, user.sex)}</p>
-                <div className='user-page__actions'>
-                    <Button className='user-page__action-item' variant='primary' size='sm' block>Добавить в друзья</Button>
-                    <Button className='user-page__action-item' variant='primary' size='sm' block>Отправить сообщение</Button>
+                {
+
+                }
+                {this.isMyAccount(user.uid) ? <div className='user-page__actions'>
+                    <Button
+                        className='user-page__action-item'
+                        variant='primary'
+                        size='sm'
+                        block
+                        onClick={this.onAddToFriendsButton}
+                    >Добавить в друзья</Button>
+                    <Link className='browser-link' to={`/messages/${user.uid}`}><Button className='user-page__action-item' variant='primary' size='sm' block>Отправить сообщение</Button></Link>
                     <Button className='user-page__action-item' variant='danger' size='sm' block>Пожаловаться</Button>
-                </div>
+                </div> : <div className='user-page__text'>Моя страница</div>}
             </React.Fragment>
         )
+    }
+
+    isMyAccount(uid) {
+        return uid !== this.props.uid;
     }
 
     isUserOnline(online) {
